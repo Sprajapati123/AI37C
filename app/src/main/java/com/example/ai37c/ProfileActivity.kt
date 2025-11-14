@@ -9,6 +9,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -39,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ai37c.ui.theme.AI37CTheme
+import com.example.ai37c.ui.theme.Pink
 
 class ProfileActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -142,7 +144,7 @@ fun ProfileBody() {
                         .weight(2f),
                     shape = RoundedCornerShape(20.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = Color.White
+                        containerColor = Pink
                     ),
                     elevation = CardDefaults.cardElevation(
                         defaultElevation = 20.dp
@@ -158,7 +160,7 @@ fun ProfileBody() {
                     }
                 }
 
-
+                Spacer(modifier = Modifier.width(20.dp))
                 Card(
                     modifier = Modifier
                         .height(200.dp)
