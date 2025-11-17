@@ -3,4 +3,6 @@
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_registratio">Registratio</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
 </resources>
