@@ -1,6 +1,8 @@
 package com.example.ai37c
 
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -8,6 +10,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,6 +23,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -38,6 +42,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -51,6 +56,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.DialogProperties
 import com.example.ai37c.ui.theme.AI37CTheme
 import com.example.ai37c.ui.theme.Blue
 import com.example.ai37c.ui.theme.PurpleGrey80
@@ -72,6 +78,9 @@ fun LoginBody() {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var visibility by remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
+    val activity = context as Activity
 
     Scaffold { padding ->
         Column(
@@ -213,7 +222,17 @@ fun LoginBody() {
 
             Spacer(modifier = Modifier.height(20.dp))
             Button(
-                onClick = {},
+                onClick = {
+                    val intent = Intent(context,
+                        DashboardActivity::class.java)
+
+                    intent.putExtra("email",email)
+                    intent.putExtra("password",password)
+                    context.startActivity(intent)
+                    activity.finish()
+
+
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Blue
                 ),
@@ -232,7 +251,17 @@ fun LoginBody() {
                 withStyle(style = SpanStyle(color = Blue)){
                     append(" Sign Up")
                 }
-            }, style = TextStyle(fontSize = 16.sp), modifier = Modifier.padding(horizontal = 15.dp, vertical = 15.dp))
+            }, style =
+                TextStyle(fontSize = 16.sp),
+                modifier = Modifier.clickable{
+                 val intent = Intent(context,
+                     RegistrationActivity::class.java)
+
+                    context.startActivity(intent)
+                    activity.finish()
+                }
+                    .padding(horizontal = 15.dp,
+                        vertical = 15.dp))
         }
 
     }

@@ -116,8 +116,8 @@ fun RegisterBody(){
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Email
                 ),
-                onValueChange = { data ->
-                    email = data
+                onValueChange = {
+                    email = it
                 },
                 placeholder = {
                     Text("abc@gmail.com")
