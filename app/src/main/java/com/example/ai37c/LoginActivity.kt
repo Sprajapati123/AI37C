@@ -258,7 +258,7 @@ fun LoginBody() {
                      RegistrationActivity::class.java)
 
                     context.startActivity(intent)
-                    activity.finish()
+
                 }
                     .padding(horizontal = 15.dp,
                         vertical = 15.dp))
