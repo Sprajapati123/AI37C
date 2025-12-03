@@ -11,8 +11,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
@@ -70,6 +75,12 @@ fun DashboardBody() {
 //    val password = activity.intent.getStringExtra("password")
 
     Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(onClick = {},containerColor = Blue){
+                Icon(Icons.Default.Add, contentDescription = null)
+            }
+        },
+        containerColor = Blue,
         topBar = {
             CenterAlignedTopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -83,12 +94,15 @@ fun DashboardBody() {
                 },
                 navigationIcon = {
                     IconButton(onClick = {}) {
-                        Image(painter = painterResource(R.drawable.face), contentDescription = null)
+                        Image(painter = painterResource(R.drawable.face),
+                            contentDescription = null)
                     }
                 },
                 actions = {
                     IconButton(onClick = {}) {
-                        Icon(painter = painterResource(R.drawable.baseline_more_horiz_24), contentDescription = null)
+                        Icon(
+                            imageVector = Icons.Default.Person,
+                            contentDescription = null)
                     }
                     IconButton(onClick = {}) {
                         Icon(painter = painterResource(R.drawable.baseline_visibility_off_24), contentDescription = null)
@@ -101,7 +115,8 @@ fun DashboardBody() {
                 listItem.forEachIndexed { index,item->
                     NavigationBarItem(
                         icon = {
-                            Icon(painter = painterResource(item.icon),contentDescription = null)
+                            Icon(painter = painterResource(item.icon)
+                                ,contentDescription = null)
                         },
                         label = {Text(item.label)},
                         onClick = {
