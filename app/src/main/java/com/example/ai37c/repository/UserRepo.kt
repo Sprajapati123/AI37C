@@ -28,10 +28,10 @@ interface UserRepo {
 
     fun getUserById(
         userId: String,
-        callback: (Boolean, UserModel) -> Unit
+        callback: (Boolean, UserModel?) -> Unit
     )
 
-    fun getAllUser(callback: (Boolean, List<UserModel>) -> Unit)
+    fun getAllUser(callback: (Boolean, List<UserModel>?) -> Unit)
 
     fun getCurrentUser(): FirebaseUser?
 
