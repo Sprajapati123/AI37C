@@ -2,15 +2,10 @@ package com.example.ai37c.repository
 
 import com.example.ai37c.model.UserModel
 import com.google.firebase.auth.FirebaseUser
-import javax.security.auth.callback.Callback
 
 interface UserRepo {
 
-    //    {
-//        "success":true,
-//        "message":"Login succesful",
-//    "userId":"abc"
-//    }
+
     fun login(
         email: String, password: String,
         callback: (Boolean, String) -> Unit
@@ -26,22 +21,30 @@ interface UserRepo {
         model: UserModel, callback: (Boolean, String) -> Unit
     )
 
-    fun getUserById(
-        userId: String,
-        callback: (Boolean, UserModel?) -> Unit
-    )
+    fun forgetPassword(email: String, callback: (Boolean, String) -> Unit)
 
-    fun getAllUser(callback: (Boolean, List<UserModel>?) -> Unit)
-
-    fun getCurrentUser(): FirebaseUser?
-
-    fun deleteUser(
-        userId: String,
+    fun editProfile(
+        userId: String, model: UserModel,
         callback: (Boolean, String) -> Unit
     )
 
-    fun updateProfile(
+    fun logout(callback: (Boolean, String) -> Unit)
+
+    fun deleteAccount(userId: String, callback: (Boolean, String) -> Unit)
+
+    fun getCurrentUser(): FirebaseUser?
+
+    //    {
+//        "success": true,
+//        "message":"profile fetched"
+//    }
+
+    fun getUserById(
         userId: String,
-        model: UserModel, callback: (Boolean, String) -> Unit
+        callback: (Boolean, String, UserModel?) -> Unit
     )
+
+    fun getAllUser(callback: (Boolean, String, List<UserModel>?) -> Unit)
+
+
 }
