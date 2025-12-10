@@ -5,7 +5,6 @@ import com.google.firebase.auth.FirebaseUser
 
 interface UserRepo {
 
-
     fun login(
         email: String, password: String,
         callback: (Boolean, String) -> Unit
