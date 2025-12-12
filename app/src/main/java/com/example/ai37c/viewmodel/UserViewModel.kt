@@ -1,5 +1,6 @@
 package com.example.ai37c.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ai37c.model.UserModel
 import com.example.ai37c.repository.UserRepo
@@ -52,16 +53,36 @@ class UserViewModel(val repo: UserRepo) : ViewModel() {
         return repo.getCurrentUser()
     }
 
+    private val _users = MutableLiveData<UserModel?>()
+    val users : MutableLiveData<UserModel?> get() = _users
 
+    private val _allUsers = MutableLiveData<List<UserModel>?>()
+    val allUsers : MutableLiveData<List<UserModel>?> get() = _allUsers
 
     fun getUserById(
         userId: String
     ){
+        repo.getUserById(userId){
+            success,msg,data->
+            if(success){
+                _users.postValue(data)
+            }else{
+                _users.postValue(null)
 
+            }
+        }
     }
 
     fun getAllUser(){
+        repo.getAllUser {
+            success,message,data->
+            if (success){
+                _allUsers.postValue(data)
+            }else{
+                _allUsers.postValue(emptyList())
 
+            }
+        }
     }
 
 

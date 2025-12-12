@@ -142,6 +142,7 @@ class UserRepoImpl : UserRepo {
     }
 
     override fun getAllUser(callback: (Boolean, String, List<UserModel>?) -> Unit) {
+//        ref.orderByChild("categoryId").equalTo("abc").addValueEventListener()
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
