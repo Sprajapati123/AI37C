@@ -1,6 +1,7 @@
 package com.example.ai37c
 
 import android.app.Activity
+import android.content.Intent
 import android.media.Image
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -75,12 +76,15 @@ fun DashboardBody() {
 //    val password = activity.intent.getStringExtra("password")
 
     Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(onClick = {},containerColor = Blue){
-                Icon(Icons.Default.Add, contentDescription = null)
-            }
-        },
-        containerColor = Blue,
+       floatingActionButton = {
+           FloatingActionButton(onClick = {
+               val intent = Intent(context,
+                   AddProductActivity::class.java)
+               context.startActivity(intent)
+           }) {
+               Icon(Icons.Default.Add,contentDescription = null)
+           }
+       },
         topBar = {
             CenterAlignedTopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
