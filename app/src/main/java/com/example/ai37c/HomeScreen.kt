@@ -10,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -40,23 +41,39 @@ fun HomeScreen() {
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        items(allProducts.value!!.size){index->
-            var data = allProducts.value!![index]
-            Card(modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp)) {
-                Column(
-                    modifier = Modifier.padding(15.dp)
-                ) {
-                    Text(data.name)
-                    Text(data.price.toString())
-                    Text(data.desc)
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Default.Edit,contentDescription = null)
-                    }
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Default.Delete,contentDescription = null)
+        if(loading.value){
+            item {
+                CircularProgressIndicator()
+            }
+        }else{
+            items(allProducts.value!!.size){index->
+                var data = allProducts.value!![index]
+                Card(modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp)) {
+                    Column(
+                        modifier = Modifier.padding(15.dp)
+                    ) {
+                        Text(data.name)
+                        Text(data.price.toString())
+                        Text(data.desc)
+                        IconButton(onClick = {}) {
+                            Icon(Icons.Default.Edit,contentDescription = null)
+                        }
+                        IconButton(onClick = {
+                            productViewModel.deleteProduct(data.productId){
+                                    success,message->
+                                if(success){
+
+                                }else{
+
+                                }
+                            }
+                        }) {
+                            Icon(Icons.Default.Delete,contentDescription = null)
+                        }
                     }
                 }
             }
         }
+
     }
 }
