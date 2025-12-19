@@ -56,7 +56,7 @@ fun DashboardBody() {
     val context = LocalContext.current
     val activity = context as Activity
 
-    data class NavItem(val label:String,val icon: Int)
+    data class NavItem(val label: String, val icon: Int)
 
     var selectedIndex by remember { mutableStateOf(0) }
 
@@ -68,23 +68,21 @@ fun DashboardBody() {
     )
 
 
-
-
-
-
 //    val email = activity.intent.getStringExtra("email")
 //    val password = activity.intent.getStringExtra("password")
 
     Scaffold(
-       floatingActionButton = {
-           FloatingActionButton(onClick = {
-               val intent = Intent(context,
-                   AddProductActivity::class.java)
-               context.startActivity(intent)
-           }) {
-               Icon(Icons.Default.Add,contentDescription = null)
-           }
-       },
+        floatingActionButton = {
+            FloatingActionButton(onClick = {
+                val intent = Intent(
+                    context,
+                    AddProductActivity::class.java
+                )
+                context.startActivity(intent)
+            }) {
+                Icon(Icons.Default.Add, contentDescription = null)
+            }
+        },
         topBar = {
             CenterAlignedTopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -98,33 +96,40 @@ fun DashboardBody() {
                 },
                 navigationIcon = {
                     IconButton(onClick = {}) {
-                        Image(painter = painterResource(R.drawable.face),
-                            contentDescription = null)
+                        Image(
+                            painter = painterResource(R.drawable.face),
+                            contentDescription = null
+                        )
                     }
                 },
                 actions = {
                     IconButton(onClick = {}) {
                         Icon(
                             imageVector = Icons.Default.Person,
-                            contentDescription = null)
+                            contentDescription = null
+                        )
                     }
                     IconButton(onClick = {}) {
-                        Icon(painter = painterResource(R.drawable.baseline_visibility_off_24), contentDescription = null)
+                        Icon(
+                            painter = painterResource(R.drawable.baseline_visibility_off_24),
+                            contentDescription = null
+                        )
                     }
                 }
             )
         },
         bottomBar = {
             NavigationBar {
-                listItem.forEachIndexed { index,item->
+                listItem.forEachIndexed { index, item ->
                     NavigationBarItem(
                         icon = {
-                            Icon(painter = painterResource(item.icon)
-                                ,contentDescription = null)
+                            Icon(
+                                painter = painterResource(item.icon), contentDescription = null
+                            )
                         },
-                        label = {Text(item.label)},
+                        label = { Text(item.label) },
                         onClick = {
-                            selectedIndex =index
+                            selectedIndex = index
                         },
                         selected = selectedIndex == index
                     )
@@ -137,7 +142,7 @@ fun DashboardBody() {
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            when(selectedIndex){
+            when (selectedIndex) {
                 0 -> HomeScreen()
                 1 -> SearchScreen()
                 2 -> NotificationScreen()
