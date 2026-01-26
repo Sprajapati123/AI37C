@@ -45,6 +45,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -171,7 +172,7 @@ fun LoginBody() {
                 placeholder = {
                     Text("abc@gmail.com")
                 },
-                modifier = Modifier
+                modifier = Modifier.testTag("email")
                     .fillMaxWidth()
                     .padding(horizontal = 15.dp),
                 shape = RoundedCornerShape(15.dp),
@@ -208,7 +209,7 @@ fun LoginBody() {
                     Text("********")
                 },
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth().testTag("password")
                     .padding(horizontal = 15.dp),
                 shape = RoundedCornerShape(15.dp),
                 colors = TextFieldDefaults.colors(
@@ -248,7 +249,7 @@ fun LoginBody() {
                 ),
                 shape = RoundedCornerShape(12.dp),
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth().testTag("login")
                     .height(60.dp).padding(horizontal = 15.dp)
             ) {
                 Text("Log In")
@@ -263,7 +264,7 @@ fun LoginBody() {
                 }
             }, style =
                 TextStyle(fontSize = 16.sp),
-                modifier = Modifier.clickable{
+                modifier = Modifier.testTag("register").clickable{
                  val intent = Intent(context,
                      RegistrationActivity::class.java)
 
